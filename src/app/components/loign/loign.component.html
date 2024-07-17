@@ -1,0 +1,40 @@
+<mat-card
+  class="h-fit"
+  style="
+    background-color: transparent;
+    box-shadow: inset 0px 0px 14px #e6dfdf;
+    padding: 24px;
+  "
+>
+  <mat-card-title class="p-5">ورود به سیستم</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <p>
+        <mat-form-field appearance="outline" class="w-96" >
+          <input
+            type="text"
+            matInput
+            placeholder="نام کاربری"
+            formControlName="username"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field appearance="outline" class="w-96">
+          <input
+            type="password"
+            matInput
+            placeholder="کلمه عبور"
+            formControlName="password"
+          />
+        </mat-form-field>
+      </p>
+      <div class="flex justify-between">
+        <button type="button" [routerLink]="['/register']" mat-button>ثبت نام</button>
+        <button type="submit" mat-button>ورود</button>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

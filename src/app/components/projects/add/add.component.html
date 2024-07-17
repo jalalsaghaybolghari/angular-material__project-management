@@ -1,0 +1,86 @@
+<form [formGroup]="projectForm" (ngSubmit)="SaveProject()">
+  <mat-card style="direction: rtl; box-shadow: none">
+    <mat-card-header>
+      <h2 >{{ pageTitle }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>نام پروژه</mat-label>
+          <input
+            class="pr-5"
+            type="text"
+            matInput
+            placeholder="نام پروژه"
+            formControlName="title"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>توضیحات</mat-label>
+          <input
+            class="pr-5"
+            type="text"
+            matInput
+            placeholder="توضیحات"
+            formControlName="description"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>تاریخ شروع پروژه</mat-label>
+          <input
+            class="pr-5"
+            matInput
+            [matDatepicker]="picker1"
+            (dateChange)="onChange($event)"
+            [matDatepickerFilter]="dateFilters"
+            formControlName="startDate"
+            placeholder="تاریخ شروع پروژه"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>تاریخ پایان پروژه</mat-label>
+          <input
+            class="pr-5"
+            matInput
+            [matDatepicker]="picker2"
+            (dateChange)="onChange($event)"
+            [matDatepickerFilter]="dateFilters"
+            formControlName="endDate"
+            placeholder="تاریخ پایان پروژه"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-footer class="w-1/2 flex items-center justify-center">
+      @if(id == null){
+      <button mat-raised-button color="primary" type="submit" class="ml-11">
+        ثبت پروژه
+      </button>
+      }@else {
+      <button mat-raised-button color="primary" type="submit" class="ml-11">
+        ویرایش پروژه
+      </button>
+      }
+
+      <button [routerLink]="['/project-list']" mat-raised-button color="accent">
+        لغو
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</form>

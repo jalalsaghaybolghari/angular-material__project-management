@@ -1,0 +1,94 @@
+<div>
+  <mat-card>
+    <mat-card-header style="direction: rtl">
+      <div class="flex flex-col justify-start items-center w-full">
+        <div>
+          <h2 >لیست پروژه ها</h2>
+        </div>
+        <mat-divider class="w-full"></mat-divider>
+
+        <div class="flex flex-row justify-start items-center w-full p-3">
+          <button
+            [routerLink]="['/add-project']"
+            mat-raised-button
+            class="ml-5"
+            color="primary"
+          >
+            جدید
+          </button>
+          @if(selectedRowIndex !== -1){
+          <button
+            mat-raised-button
+            (click)="onAddNewMember()"
+            class="ml-5"
+            color="primary"
+          >
+            افزودن عضو جدید
+          </button>
+          <button
+            mat-raised-button
+            (click)="onAddNewTask()"
+            class="ml-5"
+            color="primary"
+          >
+            افزودن تسک جدید
+          </button>
+          <button
+          mat-raised-button
+          (click)="onShowMemberList()"
+          class="ml-5"
+          color="primary"
+        >
+          لیست اعضای پروژه
+        </button>
+          }
+        </div>
+
+        <mat-divider class="w-full"></mat-divider>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <table
+        style="direction: rtl; text-align: justify"
+        mat-table
+        matSort
+        [dataSource]="dataSource"
+      >
+        <ng-container
+          matColumnDef="{{ innerColumn.key }}"
+          *ngFor="let innerColumn of columns"
+        >
+          <th mat-sort-header mat-header-cell class="p-0" *matHeaderCellDef>
+            {{ innerColumn.display }}
+          </th>
+          <th mat-cell *matCellDef="let element; let index = index">
+            @if(innerColumn.key === 'startDate' || innerColumn.key ==='endDate'){
+            <ng-container>
+              {{ element[innerColumn.key] | jalaali : "jYYYY/jMM/jDD" }}
+            </ng-container>
+            } @else if(innerColumn.key !== 'actions'){
+            <ng-container>
+              {{ element[innerColumn.key] }}
+            </ng-container>
+            }
+            <div *ngIf="innerColumn.key === 'actions'">
+              <!-- <button mat-raised-button color="primary" [routerLink]="['/edit-project/' + element.id]">Edit</button> -->
+            </div>
+          </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          (click)="highlight(index)"
+          [ngClass]="{ highlightTableColor: selectedRowIndex == index }"
+          *matRowDef="let row; let index = index; columns:displayedColumns"
+        ></tr>
+      </table>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-paginator [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons>
+      </mat-paginator>
+    </mat-card-footer>
+  </mat-card>
+</div>

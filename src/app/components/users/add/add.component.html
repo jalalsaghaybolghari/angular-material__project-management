@@ -1,0 +1,35 @@
+<form [formGroup]="userForm" (ngSubmit)="SaveUser()">
+    <mat-card>
+      <mat-card-header>
+        <h2>{{pageTitle}}</h2>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>firstName</mat-label>
+          <input matInput formControlName="firstName"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>lastName</mat-label>
+          <input matInput formControlName="lastName"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>email</mat-label>
+          <input matInput formControlName="email"/>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>mobile</mat-label>
+          <input matInput formControlName="mobile"/>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-footer>
+        @if(id == null){
+          <button mat-raised-button color="primary" type="submit">Save</button>
+        }@else {
+          <button mat-raised-button color="primary" type="submit" >Edit</button>
+        }
+  
+        <button [routerLink]="['/user-list']" mat-raised-button color="accent">Cancel</button>
+      </mat-card-footer>
+    </mat-card>
+  </form>
+  

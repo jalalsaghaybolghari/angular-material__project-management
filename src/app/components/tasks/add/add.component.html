@@ -1,0 +1,85 @@
+<form [formGroup]="taskForm" (ngSubmit)="SaveTask()">
+  <mat-card style="direction: rtl; box-shadow: none">
+    <mat-card-header>
+      <h2 class="font-vazir">{{ pageTitle }}</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>نام تسک</mat-label>
+          <input
+            class="pr-5"
+            type="text"
+            matInput
+            placeholder="نام تسک"
+            formControlName="title"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>توضیحات</mat-label>
+          <input
+            class="pr-5"
+            type="text"
+            matInput
+            placeholder="توضیحات"
+            formControlName="description"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>مهلت اتمام تسک</mat-label>
+          <input
+            class="pr-5"
+            matInput
+            [matDatepicker]="picker1"
+            (dateChange)="onChange($event)"
+            [matDatepickerFilter]="dateFilters"
+            formControlName="deadLine"
+            placeholder="مهلت اتمام تسک"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>اولویت</mat-label>
+          <input
+            class="pr-5"
+            type="number"
+            matInput
+            placeholder="اولویت تسک"
+            formControlName="priority"
+          />
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field class="w-1/2">
+          <mat-label>نام کاربر انجام دهنده تسک</mat-label>
+          <mat-select formControlName="assignmentUserName">
+            @for (user of userList; track user) {
+            <mat-option [value]="user.userName"
+              >{{ user.firstName }} {{ user.lastName }}</mat-option
+            >
+            }
+          </mat-select>
+        </mat-form-field>
+      </p>
+    </mat-card-content>
+    <mat-card-footer class="w-1/2 flex items-center justify-center">
+      <button mat-raised-button color="primary" type="submit" class="ml-11">
+        ثبت تسک
+      </button>
+
+      <button [routerLink]="['/task-list']" mat-raised-button color="accent">
+        لغو
+      </button>
+    </mat-card-footer>
+  </mat-card>
+</form>

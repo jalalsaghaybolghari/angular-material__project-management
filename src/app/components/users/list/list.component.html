@@ -1,0 +1,32 @@
+<div>
+    <mat-card>
+      <mat-card-header>
+        <h2>user</h2>
+        <br />
+        <button [routerLink]="['/add-user']" mat-raised-button color="primary">add user</button>
+      </mat-card-header>
+      <mat-card-content>
+        <table mat-table matSort [dataSource]="dataSource">
+          <ng-container matColumnDef="{{ innerColumn }}" *ngFor="let innerColumn of displayColumns">
+            <th mat-sort-header mat-header-cell style="text-align: center; justify-content: center" *matHeaderCellDef>{{ innerColumn }}</th>
+            <th mat-cell *matCellDef="let element">
+              <ng-container *ngIf="innerColumn !== 'actions'">
+                {{ element[innerColumn] }}
+              </ng-container>
+              <div *ngIf="innerColumn === 'actions'">
+                <button mat-raised-button color="primary" [routerLink]="['/edit-user/' + element.id]">Edit</button>
+                <!-- <button mat-raised-button color="accent" (click)="deleteUser(element.id)">Delete</button> -->
+              </div>
+            </th>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+        </table>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-paginator [pageSizeOptions]="[5, 10, 50]" showFirstLastButtons> </mat-paginator>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+  

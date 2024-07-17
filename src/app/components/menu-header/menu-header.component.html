@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="flex justify-between">
+  <div class="flex items-center">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button (click)="onChangeUserInfo()" mat-menu-item>
+          <span>ویرایش اطلاعات</span>
+          <mat-icon>account_box</mat-icon>
+        </button>
+        <button (click)="onChangePassword()" mat-menu-item>
+          <span>تغییر رمز ورود</span>
+          <mat-icon>password</mat-icon>
+        </button>
+        <button (click)="onLogOut()" mat-menu-item>
+          <span>خروج</span>
+          <mat-icon>exit_to_app</mat-icon>
+        </button>
+      </mat-menu>
+    </button>
+    <button routerLink="" mat-button>داشبورد</button>
+    <button routerLink="project-list" mat-button>لیست پروژه ها</button>
+    <button routerLink="task-list" mat-button>لیست تسک ها</button>
+
+  </div>
+  <div class="flex">
+    <label>خوش آمدید</label>
+    <label class="px-2">{{ loginResult?.firstname }} {{ loginResult?.lastname }}</label>
+    <label>آقا/خانم </label>
+  </div>
+</mat-toolbar>

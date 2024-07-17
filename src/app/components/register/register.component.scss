@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/assets/login-page.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    min-width: 300px;
+  }
+  
+  mat-card-title,
+  mat-card-content {
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .button {
+    display: flex;
+    justify-content: flex-end;
+  }
+  input:-webkit-autofill {
+    background-color: inherit !important; /* Inherit from form field background */
+    color: inherit !important; /* Inherit from form field text color */
+  }
